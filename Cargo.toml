@@ -1,0 +1,11 @@
+[package]
+name = "better-cmd-not-found"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+dialoguer = { version = "0.11", features = ["fuzzy-select"] }
+console = "0.15"
+atty = "0.2"
+anyhow = "1.0"
+shlex = "1.3"
