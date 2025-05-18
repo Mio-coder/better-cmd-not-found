@@ -32,6 +32,7 @@
           pkgs.nix-index
         ];
 
+        # put in fhs place for comapt
         postInstall = ''
           mkdir -p $out/etc/profile.d
           substitute ${./setup.sh} $out/etc/profile.d/setup-cmd-not-found.sh \
@@ -52,8 +53,9 @@
     };
 
     nixosModules.default = { ... }: {
-      environment.etc."profile.d/setup-cmd-not-found.sh".source = 
-        "${self.packages.${system}.default}/etc/profile.d/setup-cmd-not-found.sh";
+      programs.bash.shellInit = [ ''
+        source ${self.packages.${system}.default}/etc/profile.d/setup-cmd-not-found.sh
+      ''];
     };
   };
 }
