@@ -53,9 +53,9 @@
     };
 
     nixosModules.default = { ... }: {
-      programs.bash.shellInit = [ ''
+      programs.bash.shellInit = ''
         source ${self.packages.${system}.default}/etc/profile.d/setup-cmd-not-found.sh
-      ''];
+      '';
     };
   };
 }
