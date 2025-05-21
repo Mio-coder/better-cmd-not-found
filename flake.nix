@@ -27,16 +27,22 @@
 
         cargoLock.lockFile = ./Cargo.lock;
 
-        nativeBuildInputs = [ pkgs.pkg-config ];
-        buildInputs = [ 
-          pkgs.nix-index
+        nativeBuildInputs = with pkgs; [
+          pkg-config
+          makeWrapper
+        ];
+        buildInputs = with pkgs; [ 
+          nix-index
         ];
 
-        # put in fhs place for comapt
+        # put in fhs place for compat
         postInstall = ''
           mkdir -p $out/etc/profile.d
           substitute ${./setup.sh} $out/etc/profile.d/setup-cmd-not-found.sh \
             --subst-var out
+          # Wrap the binary to include nix-index in PATH
+          wrapProgram "$out/bin/better-cmd-not-found" \
+            --prefix PATH : "${pkgs.nix-index}/bin"
         '';
       };
     };
