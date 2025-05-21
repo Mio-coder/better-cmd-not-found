@@ -6,14 +6,12 @@ Interactive command-not-found handler for Nix with fuzzy package selection
 You can pre-generate database for faster lookup
 https://github.com/nix-community/nix-index
 
-### From source
+Add this repo to inputs
+Add this module to nixos:
+inputs.better-cmd-not-found.nixosModules.default
 
-```bash
-cargo build --release
-cp target/release/better-cmd-not-found ~/.local/bin/
-```
 
-Add to .bashrc:
+## Example
 ```bash
-command_not_found_handle() { ~/.local/bin/better-cmd-not-found "$@"; return $?; }
+better-cmd-not-found /nix/store/i48zw14qnz1z9ky9yyw803pr9bxiwhc4-nix-index-0.1.8 clang --help
 ```

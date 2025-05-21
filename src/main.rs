@@ -7,10 +7,11 @@ use console::style;
 
 fn main() -> Result<()> {
     let args: Vec<String> = env::args().collect();
-    if args.len() < 2 {
-        eprintln!("Usage: {} <command>", args[0]);
+    if args.len() < 3 {
+        eprintln!("Usage: {} <nix-index-path> <command>", args[0]);
         return Ok(());
     }
+    let nix_index = &args[1];
     let cmd = &args[1];
     let cmd_args = &args[2..];
 
@@ -20,7 +21,7 @@ fn main() -> Result<()> {
     }
     eprintln!("Searching in nixpkgs...");
 
-    let output = Command::new("nix-locate")
+    let output = Command::new(format!("{}/bin/nix-locate", nix_index))
         .args(["--minimal", "--no-group", "--type=x", "--type=s", "--top-level", "--whole-name", "--at-root"])
         .arg(format!("/bin/{}", cmd))
         .output()
