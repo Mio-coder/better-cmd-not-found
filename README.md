@@ -15,3 +15,6 @@ inputs.better-cmd-not-found.nixosModules.default
 ```bash
 better-cmd-not-found clang --help
 ```
+
+## Similar software
+https://github.com/nix-community/comma
