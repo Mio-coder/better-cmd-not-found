@@ -1,3 +1,4 @@
+# project archived, pay-respects is much better
 # better-cmd-not-found
 
 Interactive command-not-found handler for Nix with fuzzy package selection
@@ -18,3 +19,4 @@ better-cmd-not-found clang --help
 
 ## Similar software
 https://github.com/nix-community/comma
+https://github.com/iffse/pay-respects
